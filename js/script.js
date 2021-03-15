@@ -49,11 +49,13 @@ function showPage(list, page) {
   }
 }
 showPage(data, 1)
+
+
 const addPagination = list => {
   const numOfPages = Math.ceil(list.length / 9 )
   const linkList = document.querySelector('.link-list');
   linkList.innerHTML =''
-  for(let i=1; i< numOfPages; i++){
+  for(let i=1; i< numOfPages+1; i++){
     const li= document.createElement('li');
     linkList.appendChild(li);
     const button = document.createElement('button');
