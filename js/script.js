@@ -48,8 +48,37 @@ function showPage(list, page) {
 
   }
 }
+showPage(data, 1)
+const addPagination = list => {
+  const numOfPages = Math.ceil(list.length / 9 )
+  const linkList = document.querySelector('.link-list');
+  linkList.innerHTML =''
+  for(let i=1; i< numOfPages; i++){
+    const li= document.createElement('li');
+    linkList.appendChild(li);
+    const button = document.createElement('button');
+    button.type = "button"
+    button.innerHTML = `${i}`
+    li.appendChild(button);
+    const firstLi = linkList.firstElementChild;
+    const firstButton = firstLi.firstElementChild;
+    firstButton.className = "active"
+
+  }
+  linkList.addEventListener('click', (e)=>{
+    if(e.target.tagName === 'BUTTON'){
+      const studentList = document.querySelector('.student-list');
+      studentList.innerHTML=''
+      const active = document.querySelector('.active');
+      active.className =''
+      e.target.className ='active'
+      studenList = showPage(list, e.target.textContent)
+    }
+    })
+  }
 
 
+addPagination(data)
 
 /*
 Create the `showPage` function
