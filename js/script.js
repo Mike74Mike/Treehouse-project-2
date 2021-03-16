@@ -2,9 +2,19 @@
 Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
+const header = document.querySelector('header');
+const h2 = document.querySelector('h2');
+const div= document.createElement('div');
+const searchLabel = document.createElement('label');
+const searchSubmit = document.createElement('input');
 
 
-
+searchLabel.innerHTML = '<input type="text">'
+searchSubmit.type= "submit";
+searchSubmit.value= 'Submit'
+div.appendChild(searchLabel);
+div.appendChild(searchSubmit);
+header.insertBefore(div, h2.nextSibling)
 /*
 For assistance:
    Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
@@ -81,6 +91,8 @@ const addPagination = list => {
 
 
 addPagination(data)
+
+
 
 /*
 Create the `showPage` function
