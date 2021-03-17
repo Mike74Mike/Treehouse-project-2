@@ -8,6 +8,22 @@ For assistance:
    Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
    Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
 */
+const header = document.querySelector('header');
+const h2 = document.querySelector('h2');
+const div= document.createElement('div');
+const search = document.createElement('input');
+const label = document.createElement('label');
+label.innerHTML = '<button type="button">Submit</button> '
+const value = search.value
+
+search.type= "text";
+div.appendChild(search);
+div.appendChild(label);
+header.insertBefore(div, h2.nextSibling)
+
+
+
+
 function showPage(list, page) {
   const startIndex = (page * 9 ) - 9;
   const endIndex= page * 9;
@@ -48,39 +64,8 @@ function showPage(list, page) {
 }
 showPage(data, 1)
 
-function searchBar(list){
-
-const header = document.querySelector('header');
-const h2 = document.querySelector('h2');
-const div= document.createElement('div');
-const search = document.createElement('input');
-const studentList = document.querySelectorAll('li.student-item');
-
-search.type= "text";
-div.appendChild(search);
-header.insertBefore(div, h2.nextSibling)
-
-search.addEventListener("keyup", (e) =>{
-
-  const value = e.target.value.toLowerCase();
-  studentList.forEach((h3) =>{
-
-    h3.textContent.toLowerCase().startsWith(value)
-    ? h3.style.display =''
-    : h3.style.display ="none"
 
 
-  
-
-
-  });
-
-
-})
-
-}
-
-searchBar(data)
 
 
 const addPagination = list => {
@@ -113,3 +98,37 @@ const addPagination = list => {
 
 
 addPagination(data)
+
+
+function searchBar(searchInput, list){
+const studentList = document.querySelectorAll('li.student-item.cf');
+
+  for(let i=0; i<list.length; i++){
+    studentList[i].style.display = '';
+    if(searchInput.value !== 0 &&
+      studentList[i].textContent.toLowerCase().includes(searchInput.value.toLowerCase())){
+      studentList[i].style.display ='flex';
+    }else {
+      studentList[i].style.display ='none'
+    }
+  }
+
+
+}
+label.addEventListener('click', (event) => {
+  event.preventDefault();
+
+
+searchBar(search,data)
+
+
+
+});
+
+search.addEventListener('keyup', () => {
+
+
+  searchBar(search,data);
+
+
+});
