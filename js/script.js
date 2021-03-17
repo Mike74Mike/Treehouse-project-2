@@ -2,19 +2,7 @@
 Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
-const header = document.querySelector('header');
-const h2 = document.querySelector('h2');
-const div= document.createElement('div');
-const searchLabel = document.createElement('label');
-const searchSubmit = document.createElement('input');
 
-
-searchLabel.innerHTML = '<input type="text">'
-searchSubmit.type= "submit";
-searchSubmit.value= 'Submit'
-div.appendChild(searchLabel);
-div.appendChild(searchSubmit);
-header.insertBefore(div, h2.nextSibling)
 /*
 For assistance:
    Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
@@ -60,6 +48,40 @@ function showPage(list, page) {
 }
 showPage(data, 1)
 
+function searchBar(list){
+
+const header = document.querySelector('header');
+const h2 = document.querySelector('h2');
+const div= document.createElement('div');
+const search = document.createElement('input');
+const studentList = document.querySelectorAll('li.student-item');
+
+search.type= "text";
+div.appendChild(search);
+header.insertBefore(div, h2.nextSibling)
+
+search.addEventListener("keyup", (e) =>{
+
+  const value = e.target.value.toLowerCase();
+  studentList.forEach((h3) =>{
+
+    h3.textContent.toLowerCase().startsWith(value)
+    ? h3.style.display =''
+    : h3.style.display ="none"
+
+
+  
+
+
+  });
+
+
+})
+
+}
+
+searchBar(data)
+
 
 const addPagination = list => {
   const numOfPages = Math.ceil(list.length / 9 )
@@ -91,21 +113,3 @@ const addPagination = list => {
 
 
 addPagination(data)
-
-
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
-
-
-
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
-
-
-
-// Call functions
