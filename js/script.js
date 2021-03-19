@@ -1,12 +1,11 @@
-/*
-Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering
+/**
+* @file This Organizes a series of student data
+* @author Mike T.
 */
 
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
+
+/**
+* @const -The series of const and Labels appends a submit and text input
 */
 const header = document.querySelector('header');
 const h2 = document.querySelector('h2');
@@ -20,15 +19,24 @@ search.type= "text";
 div.appendChild(search);
 div.appendChild(label);
 header.insertBefore(div, h2.nextSibling)
+//end series
 
 
 
+/**
+* @function showPage
+* @param {array} list
+* @param {number} page
+* @description - This will Display the information from the data
+*                array to the Dom
+*/
 
 function showPage(list, page) {
   const startIndex = (page * 9 ) - 9;
   const endIndex= page * 9;
   const studentList = document.querySelector('.student-list');
   studentList.innerHTMl = '';
+
   for(let i= 0; i< list.length; i++){
     if(startIndex <= i && endIndex > i ){
       studentItem = list[i];
@@ -62,12 +70,24 @@ function showPage(list, page) {
 
   }
 }
+//End function
+
+/**
+* @callback Showpage()
+* @arg {array} data
+* @arg {number} 1
+*/
 showPage(data, 1)
 
 
 
 
-
+/**
+* @function addPagination
+* @param {array} list
+* @description -Whis will display the Page numbers at the bottom and also
+*               display 9 different students on each page
+*/
 const addPagination = list => {
   const numOfPages = Math.ceil(list.length / 9 )
   const linkList = document.querySelector('.link-list');
@@ -84,6 +104,11 @@ const addPagination = list => {
     firstButton.className = "active"
 
   }
+  /**
+  * @event linkList#addEventListener
+  * @description - When the buttons at the button is 'click' it will
+  *                display students
+  */
   linkList.addEventListener('click', (e)=>{
     if(e.target.tagName === 'BUTTON'){
       const studentList = document.querySelector('.student-list');
@@ -95,11 +120,20 @@ const addPagination = list => {
     }
     })
   }
+//end of functoin
 
-
+/**
+* @callback addPagination()
+* @arg {array} data
+*/
 addPagination(data)
 
 
+
+/**
+* @description -bellow was a failed attempt at creating the searchBar
+*               I will eventually get back to it
+*/
 function searchBar(searchInput, list){
 const studentList = document.querySelectorAll('li.student-item.cf');
 
